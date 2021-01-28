@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
 import { api_uri } from '../../config';
+import FormInvoice from './FormInvoice';
 import Invoice from './Invoice';
 
 export default class InvoicesView extends React.Component {
@@ -46,15 +47,17 @@ export default class InvoicesView extends React.Component {
 	}
 
 	render() {
-		const accordion = "accordion-invoices";
+		const accordionId = "accordion-invoices";
 		const invoices = this.state.invoices.map(i => 
 			<Invoice 
 				{...i}
 				key={i.id} 
-				parentId={accordion} 
+				parentId={accordionId} 
 				handleDelete={(id) => this.deleteInvoice(id)}
 			/>
 		);
+
+		const formId = "form-invoice-modal";
 
 		return (
 			<div className="card">
@@ -64,14 +67,16 @@ export default class InvoicesView extends React.Component {
 						<button 
 							type="button" 
 							className="btn btn-success float-right"
-							onClick={() => console.log("TODO: Implementar el funcionamiento del botón xD")}
+							data-toggle="modal" 
+							data-target={`#${formId}`}
 						>
 							Agregar factura
 						</button>
+						<FormInvoice handleCreate={() => this.getInvoices()} id={formId}/>
 					</h3>
 				</div>
 				<div className="card-body">
-					<div id={accordion}>
+					<div id={accordionId}>
 						{invoices}
 					</div>
 				</div>
