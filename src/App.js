@@ -1,9 +1,13 @@
+import InvoicesView from "./components/invoices/InvoicesView";
 import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
+      <article className="container mt-5">
+        <InvoicesView />
+      </article>
     </div>
   );
 }
