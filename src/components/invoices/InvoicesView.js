@@ -6,22 +6,17 @@ import FormInvoice from './FormInvoice';
 import Invoice from './Invoice';
 
 export default class InvoicesView extends React.Component {
-	api_uri = (path='') => api_uri(`invoices/${path}`);
+	api_uri = (path='') => api_uri(`/invoices${path}`);
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			// TODO: Eliminar datos de prueba
-			invoices: [
-				{"id": 1, "content": "Datos de la primera factura", "title": "Factura 1"},
-				{"id": 2, "content": "Datos de la segunda factura", "title": "Factura 2"},
-				{"id": 3, "content": "Datos de la tercera factura", "title": "Factura 3"},
-			]
+			invoices: []
 		};
 	}
 
 	deleteInvoice(id) {
-		axios.delete(this.api_uri(id))
+		axios.delete(this.api_uri(`/${id}`))
 			.then(res => {
 				this.getInvoices();
 				Swal.fire({
@@ -38,11 +33,10 @@ export default class InvoicesView extends React.Component {
 	}
 
 	getInvoices() {
-		axios.get(this.api_uri())
+		axios.get(this.api_uri('?state=CREATED'))
 			.then(res => {
 				const invoices = res.data;
-				this.setState({invoices})
-				console.log(invoices);
+				this.setState({invoices});
 			});
 	}
 

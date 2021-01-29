@@ -3,7 +3,7 @@ import React from 'react';
 import { api_uri } from '../../config';
 
 export default class Invoice extends React.Component {
-	api_uri = (path='') => api_uri(`invoices/${path}`)
+	api_uri = (path='') => api_uri(`/invoices${path}`)
 	clicked = false;
 
 	constructor(props) {
@@ -13,7 +13,7 @@ export default class Invoice extends React.Component {
 
 	getFullData() {
 		if (!this.clicked) {
-			axios.get(this.api_uri(this.state.id))
+			axios.get(this.api_uri(`/${this.state.id}`))
 			.then(res => {
 				this.setState({...res.data});
 				this.clicked = true;
