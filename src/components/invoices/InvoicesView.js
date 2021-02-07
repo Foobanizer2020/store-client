@@ -66,8 +66,8 @@ export default class InvoicesView extends React.Component {
 						>
 							Agregar factura
 						</button>
-						<FormInvoice handleCreate={() => this.getInvoices()} id={formId}/>
 					</h3>
+					<FormInvoice handleCreate={() => this.getInvoices()} id={formId}/>
 				</div>
 				<div className="card-body">
 					<div id={accordionId}>

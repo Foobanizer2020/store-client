@@ -85,7 +85,7 @@ export default class Invoice extends React.Component {
 						aria-controls={`collapse${this.state.id}`}
 						onClick={() => this.getFullData()}
 					>
-						Fatura #{this.state.numberInvoice} ({this.state.createAt})
+						Factura #{this.state.numberInvoice} ({this.state.createAt})
 					</button>
 					<button
 						type="button"
